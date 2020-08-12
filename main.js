@@ -1,12 +1,70 @@
 
+const fs = require('fs')
 const path = require('path')
-const {app, BrowserWindow, Tray, Menu, screen} = require('electron')
+const ncp = require('ncp').ncp
+const fetch = require("node-fetch")
+const { exec } = require('child_process')
+const {app, BrowserWindow, Tray, Menu, screen, ipcMain} = require('electron')
 
 require('electron-reload')(__dirname)
 
 const debug = /--debug/.test(process.argv[2])
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+
+let settings = null
+const homeAppDir = app.getPath('home')+'/.pasteman'
+// fs.rmdirSync(homeAppDir,{recursive:true})
+if (!fs.existsSync(homeAppDir)) {
+	fs.mkdirSync(homeAppDir)
+	fs.copyFileSync(path.join(__dirname, '/commands.json'), homeAppDir+'/commands.json')
+	const rawdata = fs.readFileSync(path.join(__dirname, '/settings.json'))
+	settings = JSON.parse(rawdata)
+	settings.commands.uri = homeAppDir+'/commands.json'
+	fs.writeFileSync(homeAppDir+'/settings.json', JSON.stringify(settings,null,2))
+
+	fs.mkdirSync(homeAppDir+'/targets')
+	fs.readdirSync(path.join(__dirname, '/targets')).forEach(file => {
+		if (file.indexOf('paste')>-1) {
+			const src = path.join(__dirname, '/targets/'+file)
+			const dst = homeAppDir+'/targets/'+file
+			ncp(src,dst)
+		}
+	})
+}
+
+const getRemoteCommands = async url => {
+	try {
+		const response = await fetch(url)
+		const json = await response.json()
+		return json
+	} 
+	catch (error) {  
+	}
+}
+
+ipcMain.on('get-commands', (event, arg) => {
+	let rawdata = null
+	if (settings==null) {
+		rawdata = fs.readFileSync(homeAppDir+'/settings.json')
+		settings = JSON.parse(rawdata)
+	}
+	if (settings.commands.source=='remote') {
+		getRemoteCommands(settings.commands.uri).then(function(json) {
+			event.returnValue = json
+		})
+		return
+	}
+	rawdata = fs.readFileSync(settings.commands.uri)
+	const commands = JSON.parse(rawdata)
+	event.returnValue = commands
+	
+})
+
+ipcMain.on('system-call', (event, arg) => {
+	exec(arg),(error, stdout, stderr) => {}
+	event.returnValue = ''
+})
 
 let mainWindow = null
 let appIcon = null
