@@ -25,7 +25,8 @@
 							],
 							"default": "bash"
 						}
-					}
+					},
+					"enabled": false
 				}
 			]
 		},
@@ -33,6 +34,7 @@
 			"title" : "DATABASE",
 			"icon": "window",
 			"target": "tableplus",
+			"enabled": false,
 			"commands": [
 				{
 					"title": "Get users of team",

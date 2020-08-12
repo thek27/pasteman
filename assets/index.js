@@ -10,14 +10,18 @@ const commands = JSON.parse(rawdata)
 let html=''
 Array.prototype.forEach.call(commands.list, (item) => {
 
-	html+='<h5 class="nav-category">\
-        <svg class="nav-icon"><use xlink:href="assets/icons.svg#icon-'+item.icon+'"></use></svg>\
-		'+item.title+'</h5>'
-	
-	Array.prototype.forEach.call(item.commands, (cmd) => {
-		html+='<button ondblclick="" onclick="return copyCommand(\''+cmd.command+'\',\''+item.target+'\')" type="button" \
-			class="cmd-button nav-button">'+cmd.title+'</button>'
-	})
+	if (item.enabled===undefined || item.enabled===true) {
+		html+='<h5 class="nav-category">\
+			<svg class="nav-icon"><use xlink:href="assets/icons.svg#icon-'+item.icon+'"></use></svg>\
+			'+item.title+'</h5>'
+		
+		Array.prototype.forEach.call(item.commands, (cmd) => {
+			if (cmd.enabled===undefined || cmd.enabled===true) {
+				html+='<button ondblclick="" onclick="return copyCommand(\''+cmd.command+'\',\''+item.target+'\')" type="button" \
+					class="cmd-button nav-button">'+cmd.title+'</button>'
+			}
+		})
+	}
 })
 
 document.getElementById('commands').insertAdjacentHTML('beforeend', html)
