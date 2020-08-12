@@ -13,7 +13,7 @@ In order for this to work pasteman uses scripting languages that pertain to the 
 Pasteman uses those technologies
 
 * [Electron] - Build cross-platform desktop apps with JavaScript, HTML, and CSS
-* [AppleScript] - 
+* [AppleScript] - AppleScript is a scripting language created by Apple.
 
 License
 ----
