@@ -1,0 +1,60 @@
+{
+	"list" : [
+		{
+			"title" : "KUBERNETES",
+			"icon": "system",
+			"target": "terminal",
+			"commands": [
+				{
+					"title": "Get pods",
+					"command": "kubectl get pods"
+				},
+				{
+					"title": "Log pod",
+					"command": "kubectl logs -f {pasteman} --tail 10"
+				},
+				{
+					"title": "Exec bash into pod",
+					"command": "kubectl exec -it {pasteman} {shell}",
+					"vars": {
+						"shell": {
+							"type": "select",
+							"options": [
+								"bash",
+								"sh"
+							],
+							"default": "bash"
+						}
+					}
+				}
+			]
+		},
+		{
+			"title" : "DATABASE",
+			"icon": "window",
+			"target": "tableplus",
+			"commands": [
+				{
+					"title": "Get users of team",
+					"command": "select id,username,email from users inner join teams_users on teams_users.user_id = users.id where team_id = {team_id}",
+					"vars": {
+						"team_id": {
+							"type": "text"
+						}
+					}
+				}
+			]
+		}
+	],
+
+	"targets": {
+		"terminal" : {
+			"exec": "open -a",
+			"app": "iterm2-paste.app"
+		},
+		"tableplus": {
+			"exec": "open -a",
+			"app": "tableplus-paste.app"
+		}
+	}
+}
