@@ -6,7 +6,9 @@ Pasteman is an electron based utility to help you re-use every day scripts. Sele
   - Replace a single value in the selected command with what you had already in the clipboard
   - Directly enter the values to be replaced using inline text & select boxes for multiple values
 
-In order for this to work pasteman uses scripting languages that pertain to the underlying system
+In order for this to work pasteman uses scripting languages that pertain to the underlying system.
+
+More specifically, in darwin environments we do ask permssion for System Events so we can use AppleScript to paste the clipboard contents in specific apps (iterm & TablePlus for the time being)
 
 ### Tech
 
