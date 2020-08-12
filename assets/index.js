@@ -1,11 +1,8 @@
 
-const fs = require('fs')
 const path = require('path')
-const { exec } = require('child_process')
-const { clipboard } = require('electron')
+const { ipcRenderer, clipboard } = require('electron')
 
-const rawdata = fs.readFileSync(path.join(__dirname, '../commands.json'))
-const commands = JSON.parse(rawdata)
+let commands = ipcRenderer.sendSync('get-commands')
 
 let html=''
 Array.prototype.forEach.call(commands.list, (item) => {
@@ -34,7 +31,8 @@ copyCommand = (cmd,target) => {
 	clipboard.writeText( val+"\n" )
 
 	target = commands.targets[target]
-	exec(target.exec + ' ' + path.join(__dirname, '../targets/'+target.app),(error, stdout, stderr) => {})
+	const system_call = target.exec + ' ' + path.join(__dirname, '../targets/'+target.app)
+	ipcRenderer.sendSync('system-call', system_call)
 
 	prevCmd = cmd
 	return false
