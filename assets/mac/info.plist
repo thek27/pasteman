@@ -2,18 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>pasteman</string>
-      </array>
-      <key>CFBundleURLName</key>
-      <string>Pasteman</string>
-    </dict>
-  </array>
-  <key>ElectronTeamID</key>
-  <string>VEKTX9H2N7</string>
+  <key>NSAppleEventsUsageDescription</key>
+  <string>Please give Pasteman accces to Apple Script so we can paste commands to applications.</string>
 </dict>
 </plist>
