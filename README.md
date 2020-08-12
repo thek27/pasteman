@@ -14,6 +14,8 @@ Pasteman uses those technologies
 
 * [Electron] - Build cross-platform desktop apps with JavaScript, HTML, and CSS
 * [AppleScript] - AppleScript is a scripting language created by Apple.
+* [Ncp] - Asynchronous recursive file & directory copying
+* [NodeFetch] - A light-weight module that brings Fetch API to Node.js.
 
 License
 ----
@@ -25,3 +27,5 @@ MIT
 
    [Electron]: <https://www.electronjs.org/>
    [AppleScript]: <https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html>
+   [Ncp]: <https://github.com/AvianFlu/ncp>
+   [NodeFetch]: <https://github.com/node-fetch/node-fetch>
