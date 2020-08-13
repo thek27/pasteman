@@ -20,7 +20,15 @@ to install the dependancies and then
 
 ```npm start```
 
-When you first run the application an app folder is created in your home directory which contains a `commands.json` file which you can edit to add your own custom commands and a `settings.json` file with which you can customise whether your `commands.json` file is `local` or `remote` and the path to it. The `remote` setting can be used to share commands between a team. The executables that are used to facilitate the clipboard access are also copied to the application app in a subfolder called `targets`
+In case you want to debug the application you can use
+
+```npm run debug```
+
+which will start the app with the developer tools undocked.
+
+## Application Settings
+
+When you first run the application an app folder is created in your home directory (`.pasteman`) which contains a `commands.json` file which you can edit to add your own custom commands and a `settings.json` file with which you can customise whether your `commands.json` file is `local` or `remote` and the path to it. The `remote` setting can be used to share commands between a team. The executables that are used to facilitate the clipboard access are also copied to the application app in a subfolder called `targets`
 
 ### Darwin App Package 
 
@@ -35,6 +43,8 @@ This will create an app file in the dist directory you can move to your applicat
 - Add support for linux and win systems
 
 - Add support for multiple variables in a command
+  
+- Add subcategories to commands
 
 ## Tech
 
