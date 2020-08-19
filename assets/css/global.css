@@ -78,13 +78,31 @@ svg {
 
 /* Code */
 
-code, kbd {
+code, kbd, select, input {
   font-family: 'Source Code Pro', monospace;
   border-radius: 4px;
   padding: 1px 4px;
-  white-space: nowrap;
   color: hsl(0,0%,36%);
   background-color: hsla(0,0%,60%,.15);
+  font-size: 11px;
+}
+
+select {
+  border:0;
+}
+
+div.code {
+  margin-left: calc(1rem + 16px + .5rem); /* padding + icon + magic */
+  margin-right: 10px;
+}
+
+input {
+  width: 50px;
+  border:0;
+}
+
+input.error {
+  background-color: red;
 }
 
 pre, kbd {
@@ -162,3 +180,17 @@ kbd {
 .hljs:active {
   outline: 1px solid transparent;
 }
+
+
+/* Custom ---------------------------- */
+
+span.pasteman {
+  font-family: 'Source Code Pro', monospace;
+  border-radius: 4px;
+  padding: 1px 4px;
+  background: rgb(11, 150, 214);
+  color: #fff;
+  font-size: 11px;
+
+}
+
